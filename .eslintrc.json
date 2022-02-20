@@ -41,6 +41,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": "off",
+    "extends": "standard",
     "semi": [2, "always"],
     "react/jsx-filename-extension": [
       1,
