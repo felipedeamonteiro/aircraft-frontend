@@ -1,10 +1,10 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import PlannerPage from '../../components/PlannerPage';
 
 const Planner: React.FC = () => {
   return (
-    <h1>I'm the Planner page</h1>
+    <PlannerPage />
   );
 }
 
