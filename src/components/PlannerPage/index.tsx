@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   Container,
   DateContainer,
@@ -13,8 +13,25 @@ import {
   Timeline
 } from './styles';
 import { ImArrowRight } from 'react-icons/im';
+import Barchart from '../Barchart';
+import {useWindowSize} from '../../hooks/useDeviceScreenSize';
 
 const PlannerPage: React.FC = () => {
+  const targetRef = useRef<any>();
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+    if (targetRef.current) {
+      setDimensions({
+        width: targetRef.current.offsetWidth,
+        height: targetRef.current.offsetHeight
+      });
+    }
+  }, [windowSize]);
+
+  // dimensions state will be used to set the barchart width
+
   return (
     <Container>
       <DateContainer>
@@ -70,8 +87,8 @@ const PlannerPage: React.FC = () => {
             <Card />
             <Card />
           </RotationCards>
-          <Timeline>
-
+          <Timeline ref={targetRef}>
+            <Barchart />
           </Timeline>
         </RotationContainer>
         <FlightsContainer>

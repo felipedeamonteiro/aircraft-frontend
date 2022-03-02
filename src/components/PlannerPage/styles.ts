@@ -44,8 +44,7 @@ export const AircraftsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
+  justify-content: flex-start;
 `;
 
 export const RotationContainer = styled.div`
@@ -99,6 +98,7 @@ export const Card = styled.div`
   margin: 15px;
   border: 2px solid #000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 
   p + p {
     margin-bottom: 0;
@@ -184,4 +184,7 @@ export const RotationCards = styled.div`
 
 export const Timeline = styled.div`
   display: flex;
+  margin: 20px 0;
+  width: 100%;
+  background: lightblue;
 `;

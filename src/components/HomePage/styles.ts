@@ -20,6 +20,13 @@ export const Button = styled.button`
   cursor: pointer;
   color: #fff;
   background: linear-gradient(to bottom, #de0039, #70008c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin-bottom: 5px;
+  }
 
   &:hover {
     background: linear-gradient(to bottom, #70008c, #de0039);

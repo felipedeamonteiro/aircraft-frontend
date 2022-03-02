@@ -7,7 +7,9 @@ const HomePage: React.FC = () => {
   return (
     <Container>
       <h1>Welcome to Felipe's Aircrafts planner!</h1>
-      <Button onClick={() => router.push('/planner')}>Access the system</Button>
+      <Button onClick={() => router.push('/planner')}>
+        <p>Access the system</p>
+      </Button>
     </Container>
   );
 }
