@@ -181,10 +181,3 @@ export const RotationCards = styled.div`
     background: ${shade(0.1, '#ccc')};
   }
 `;
-
-export const Timeline = styled.div`
-  display: flex;
-  margin: 20px 0;
-  width: 100%;
-  background: lightblue;
-`;

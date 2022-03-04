@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   DateContainer,
@@ -9,28 +9,15 @@ import {
   FlightsContainer,
   CardsContainer,
   Card,
-  RotationCards,
-  Timeline
+  RotationCards
 } from './styles';
 import { ImArrowRight } from 'react-icons/im';
-import Barchart from '../Barchart';
-import {useWindowSize} from '../../hooks/useDeviceScreenSize';
+import Timeline from '../Timeline';
+import { FlightProps } from '../../utils/getPosition';
+
 
 const PlannerPage: React.FC = () => {
-  const targetRef = useRef<any>();
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const windowSize = useWindowSize();
-
-  useEffect(() => {
-    if (targetRef.current) {
-      setDimensions({
-        width: targetRef.current.offsetWidth,
-        height: targetRef.current.offsetHeight
-      });
-    }
-  }, [windowSize]);
-
-  // dimensions state will be used to set the barchart width
+  const [flights, setFlights] = useState<FlightProps[]>([]);
 
   return (
     <Container>
@@ -87,9 +74,7 @@ const PlannerPage: React.FC = () => {
             <Card />
             <Card />
           </RotationCards>
-          <Timeline ref={targetRef}>
-            <Barchart />
-          </Timeline>
+          <Timeline items={flights} />
         </RotationContainer>
         <FlightsContainer>
           <CardsContainer>
