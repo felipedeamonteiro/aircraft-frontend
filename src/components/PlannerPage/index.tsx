@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   DateContainer,
@@ -14,10 +14,17 @@ import {
 import { ImArrowRight } from 'react-icons/im';
 import Timeline from '../Timeline';
 import { FlightProps } from '../../utils/getPosition';
+import api from '../../services/api';
 
 
 const PlannerPage: React.FC = () => {
   const [flights, setFlights] = useState<FlightProps[]>([]);
+
+  useEffect(() => {
+    api.get('/flights').then(response => setFlights(response.data)).catch(err => console.log(err));
+  }, []);
+
+  console.log('flights', flights);
 
   return (
     <Container>
@@ -74,7 +81,7 @@ const PlannerPage: React.FC = () => {
             <Card />
             <Card />
           </RotationCards>
-          <Timeline items={flights} />
+          <Timeline flights={flights} />
         </RotationContainer>
         <FlightsContainer>
           <CardsContainer>

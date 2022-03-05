@@ -5,7 +5,7 @@ interface IItemsProps {
   status: string;
 }
 
-export const Dates = styled.div`
+export const HourContainer = styled.div`
     display: flex;
     flex: 1 100%;
     flex-flow: wrap;
