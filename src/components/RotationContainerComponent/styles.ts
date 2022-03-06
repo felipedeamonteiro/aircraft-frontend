@@ -90,14 +90,14 @@ export const CustomButton = styled.button`
   height: 40px;
   color: #fff;
   border-radius: 10px;
-  border: 1px solid #de0039;
-  background: linear-gradient(to bottom, #de0039, #70008c);
-  box-shadow: 0 0px 7px 0px #a6006a;
+  border: 1px solid #9aa7db;
+  background: linear-gradient(to bottom, #9aa7db, #70008c);
+  box-shadow: 0 0px 7px 0px #70008c;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
-    background: ${shade(0.2, '#de0039')};
+    background: ${shade(0.2, '#9aa7db')};
   }
 `;
