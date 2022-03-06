@@ -6,6 +6,7 @@ interface IItemsProps {
 }
 
 export const HourContainer = styled.div`
+    width: 100%;
     display: flex;
     flex: 1 100%;
     flex-flow: wrap;
@@ -46,6 +47,7 @@ export const Item = styled.div`
 `;
 
 export const TimelineWrapper = styled.div`
+    width: 100%;
     flex: 1 100%;
     margin: 0 5px 30px;
 `;

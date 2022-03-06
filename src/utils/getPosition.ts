@@ -1,7 +1,7 @@
 import { dayLength, turnaroundTime } from '../utils/time';
 
-export interface FlightProps {
-  ident: string,
+export interface FlightAndTimeProps {
+  id: string,
   departuretime: number,
   arrivaltime: number,
   readable_departure: string,
@@ -10,23 +10,16 @@ export interface FlightProps {
   destination: string
 }
 
-interface TimeProps {
-  departuretime: number,
-  arrivaltime: number,
-  destination: string,
-  origin: string
-}
-
 const canTurnAround = (start: number, end: number) => end - start >= turnaroundTime
 
-const canPrepend = (flight: FlightProps, time: TimeProps) => flight.origin === time.destination
+const canPrepend = (flight: FlightAndTimeProps, time: FlightAndTimeProps) => flight.origin === time.destination
     && canTurnAround(time.arrivaltime, flight.departuretime)
 
-const canAppend = (flight: FlightProps, time: TimeProps) => flight.destination === time.origin
+const canAppend = (flight: FlightAndTimeProps, time: FlightAndTimeProps) => flight.destination === time.origin
     && canTurnAround(flight.arrivaltime, time.departuretime)
     && time.arrivaltime < dayLength
 
-const getPosition = (flights:FlightProps[], time: TimeProps) => {
+const getPosition = (flights:FlightAndTimeProps[], time: FlightAndTimeProps) => {
     if(!flights.length) {
         return null
     }
