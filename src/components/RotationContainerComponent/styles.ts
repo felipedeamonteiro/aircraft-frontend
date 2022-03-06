@@ -25,16 +25,6 @@ export const Card = styled.div`
     margin-bottom: 0;
   }
 
-  .aircraft-card-div {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-  }
-
   .rotation-card-div-upper {
     display: flex;
     flex-direction: row;
@@ -65,39 +55,6 @@ export const Card = styled.div`
       align-items: center;
       justify-content: center;
     }
-  }
-
-  .flights-card-div-upper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .flights-card-div-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .flights-bottom-div-1, .flights-bottom-div-2 {
-      display: flex;
-      flex-direction: column;
-      font-size: 20px;
-
-      p {
-        margin: 0;
-      }
-    }
-  }
-
-  .flights-card-div-upper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 `;
 

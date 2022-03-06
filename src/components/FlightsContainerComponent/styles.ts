@@ -52,16 +52,6 @@ export const Card = styled.div`
     margin-bottom: 0;
   }
 
-  .aircraft-card-div {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-  }
-
   .rotation-card-div-upper {
     display: flex;
     flex-direction: row;
@@ -71,26 +61,6 @@ export const Card = styled.div`
     p {
       font-size: 20px;
       margin: 0;
-    }
-  }
-
-  .rotation-card-div-bottom {
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
-
-    .bottom-div-1, .bottom-div-3 {
-      display: flex;
-      flex-direction: column;
-      p {
-        margin: 0;
-      }
-    }
-
-    .bottom-div-2 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 
