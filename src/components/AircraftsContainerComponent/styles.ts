@@ -1,65 +1,16 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.div`
+export const AircraftsContainer = styled.div`
+  background: #fff;
+  margin: 0;
+  width: 25%;
+  height: 745px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
-
-export const CustomButton = styled.button`
-  width: 40px;
-  height: 40px;
-  color: #fff;
-  border-radius: 10px;
-  border: 1px solid #de0039;
-  background: linear-gradient(to bottom, #de0039, #70008c);
-  box-shadow: 0 0px 7px 0px #a6006a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background: ${shade(0.2, '#de0039')};
-  }
-`;
-
-export const DateContainer = styled.div`
-   margin: 30px;
-`;
-
-export const TitleContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  .aircraft-h4 {
-    width: 25%;
-    text-align: center;
-  }
-  .rotation-h4 {
-    width: 40%;
-    text-align: center
-  }
-  .flights-h4 {
-    width: 25%;
-    text-align: center
-  }
-`;
-
-export const DashboardContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-`;
-
-
-
-
-
 
 export const CardsContainer = styled.div`
   padding: 0 15px;
@@ -95,7 +46,6 @@ export const Card = styled.div`
   margin: 15px;
   border: 2px solid #000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
 
   p + p {
     margin-bottom: 0;
@@ -177,28 +127,3 @@ export const Card = styled.div`
   }
 `;
 
-export const RotationCards = styled.div`
-  padding: 0 15px;
-  width: 100%;
-  height: 580px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  border-bottom: 0.5px solid #ccc;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${shade(0.1, '#ccc')};
-  }
-`;
