@@ -1,17 +1,46 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { HiOutlinePlus } from 'react-icons/hi';
 import { FlightAndTimeProps } from '../../utils/getPosition';
-import { FlightsContainer, CardsContainer, Card, CustomButton } from './styles';
+import { FlightsContainer, CardsContainer, Card, CustomButton, PaginationWrapper } from './styles';
+import ReactPaginate from 'react-paginate';
+import api from '../../services/api';
 
 interface FlightsContainerProps {
-  addToRotation: () => void;
+  addToRotation: (flight: FlightAndTimeProps) => void;
+  setFlights: (flights: FlightAndTimeProps[]) => void;
   flights: FlightAndTimeProps[];
 }
 
 const FlightsContainerComponent: React.FC<FlightsContainerProps> = ({
-  flights,
-  addToRotation
+  addToRotation,
+  setFlights,
+  flights
 }) => {
+  const [offset, setOffset] = useState<number>(0);
+  const limit: number = 20;
+  const [pageCount, setPageCount] = useState<number>(0);
+
+  const loadFlightsByPages = () => {
+    api.get(`/flights?offset=${offset}&limit=${limit}`)
+    .then(response => {
+      setFlights(response.data.data);
+      setPageCount(Math.ceil(response.data.pagination.total / limit));
+    })
+    .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    loadFlightsByPages();
+  }, [offset]);
+
+  const handlePageClick = (event: any) => {
+    let selected = event.selected;
+    console.log('selected', selected);
+    let offset = Math.ceil(selected * limit);
+    setOffset(offset);
+};
+
+
   return (
     <FlightsContainer>
       <CardsContainer>
@@ -23,7 +52,7 @@ const FlightsContainerComponent: React.FC<FlightsContainerProps> = ({
                 <CustomButton
                   type="button"
                   title="Add this flight to the rotation"
-                  onClick={addToRotation}
+                  onClick={() => addToRotation(flight)}
                 >
                   <HiOutlinePlus size={20} color="#fff" />
                 </CustomButton>
@@ -43,6 +72,17 @@ const FlightsContainerComponent: React.FC<FlightsContainerProps> = ({
           )
         })}
       </CardsContainer>
+      <PaginationWrapper>
+        <ReactPaginate
+          previousLabel={'<'}
+          nextLabel={'>'}
+          breakLabel={'...'}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+        />
+      </PaginationWrapper>
     </FlightsContainer>
   );
 }

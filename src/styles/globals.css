@@ -16,3 +16,29 @@ a {
 * {
   box-sizing: border-box;
 }
+
+ul.pagination {
+  max-width: 100%;
+  display: inline;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+ul.pagination li {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 2px 3px;
+  min-width: 20px;
+  width: auto;
+  text-align: center;
+}
+
+ul.pagination li a {
+  outline: none;
+  cursor: pointer;
+}
+
+ul.pagination li.active {
+  color: #000;
+  background: #9AA7DB;
+}

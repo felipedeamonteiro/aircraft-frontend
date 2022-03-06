@@ -10,10 +10,12 @@ interface AircraftsProps {
 
 interface AircraftsContainerProps {
   aircrafts: AircraftsProps[];
+  totalScheduled: string;
 }
 
 const AircraftsContainerComponent: React.FC<AircraftsContainerProps> = ({
   aircrafts,
+  totalScheduled
 }) => {
   return (
     <AircraftsContainer>
@@ -22,7 +24,7 @@ const AircraftsContainerComponent: React.FC<AircraftsContainerProps> = ({
           return <Card key={index}>
             <div className='aircraft-card-div'>
               <p>{aircraft.ident}</p>
-              <p>{'(58 %)'}</p>
+              <p>{`Usage: ${totalScheduled}`}</p>
             </div>
           </Card>
         })}

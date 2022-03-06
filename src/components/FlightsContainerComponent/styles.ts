@@ -46,8 +46,6 @@ export const Card = styled.div`
   margin: 15px;
   border: 2px solid #000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-
   p + p {
     margin-bottom: 0;
   }
@@ -113,4 +111,10 @@ export const CustomButton = styled.button`
   &:hover {
     background: ${shade(0.2, '#de0039')};
   }
+`;
+
+export const PaginationWrapper = styled.div`
+  max-height: 4%;
+  display: flex;
+  justify-content: center;
 `;

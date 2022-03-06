@@ -5,15 +5,24 @@ import { Slider, Item, TimelineWrapper, TotalPercentage } from './styles';
 import TimelineHourList from '../TimelineHourList';
 import {FlightAndTimeProps} from '../../utils/getPosition';
 
-const Timeline = ({ flights }:{ flights: FlightAndTimeProps[] }) => {
-  console.log('Timeline flights', flights);
+interface TimelineProps {
+  flights: FlightAndTimeProps[];
+  setTotalScheduled: (total: string) => void;
+}
+
+const Timeline: React.FC<TimelineProps> = ({
+  flights,
+  setTotalScheduled,
+}) => {
   const timeline = calculateTimeline(flights)
-  const totalScheduled = Array.isArray(timeline) ? timeline.reduce((acc: number, current: [string, number]) => {
+  const totalScheduledCalculated = Array.isArray(timeline) ? timeline.reduce((acc: number, current: [string, number]) => {
       const [status, percent] = current
       const value = (status === scheduled ? percent : 0)
       return acc + value
   }, 0) : 0;
-  console.log('timeline', timeline);
+  const totalScheduled = `${totalScheduledCalculated.toFixed(2)}%`;
+
+  setTotalScheduled(totalScheduled);
 
   return (
     <TimelineWrapper>
@@ -24,7 +33,7 @@ const Timeline = ({ flights }:{ flights: FlightAndTimeProps[] }) => {
                 return <Item key={index} status={status} width={percent}>{percent}%</Item>
             })}
         </Slider>
-        Total scheduled: <TotalPercentage>{totalScheduled.toFixed(2)}%</TotalPercentage>
+        Total scheduled: <TotalPercentage>{totalScheduledCalculated.toFixed(2)}%</TotalPercentage>
     </TimelineWrapper>
   );
 }

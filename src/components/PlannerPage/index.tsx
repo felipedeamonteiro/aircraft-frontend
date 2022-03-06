@@ -20,15 +20,16 @@ interface AircraftsProps {
   base: string
 }
 
-
 const PlannerPage: React.FC = () => {
-  const [flights, setFlights] = useState<FlightAndTimeProps[]>([]);
   const [aircrafts, setAircrafts] = useState<AircraftsProps[]>([]);
+  const [flights, setFlights] = useState<FlightAndTimeProps[]>([]);
   const [rotations, setRotations] = useState<FlightAndTimeProps[]>([]);
+  const [totalScheduled, setTotalScheduled] = useState<string>('0');
 
   useEffect(() => {
-    api.get('/flights').then(response => setFlights(response.data.data)).catch(err => console.log(err));
-    api.get('/aircrafts').then(response => setAircrafts(response.data.data)).catch(err => console.log(err));
+    api.get('/aircrafts')
+    .then(response => setAircrafts(response.data.data))
+    .catch(err => console.log(err));
   }, []);
 
   const getMyDate = () => {
@@ -36,15 +37,17 @@ const PlannerPage: React.FC = () => {
     return today.toDateString();
   }
 
-  const removeFromRotation = () => {
-    console.log('removeFromRotation');
+  const removeFromRotation = (flight: FlightAndTimeProps) => {
+    setRotations(rotations.filter(rotation => rotation.id !== flight.id));
+    setFlights([...flights, flight]);
   }
 
-  const addToRotation = () => {
-    console.log('addToRotation');
+  const addToRotation = (flight: FlightAndTimeProps) => {
+    setFlights(flights.filter(f => f.id !== flight.id));
+    setRotations([...rotations, flight]);
   }
 
-  console.log('Planner Page flights', flights);
+  console.log('rotations', rotations);
 
   return (
     <Container>
@@ -57,9 +60,13 @@ const PlannerPage: React.FC = () => {
         <h4 className='flights-h4'>Flights</h4>
       </TitleContainer>
       <DashboardContainer>
-        <AircraftsContainerComponent aircrafts={aircrafts} />
-        <RotationContainerComponent rotations={rotations} removeFromRotation={removeFromRotation} />
-        <FlightsContainerComponent flights={flights} addToRotation={addToRotation} />
+        <AircraftsContainerComponent totalScheduled={totalScheduled}  aircrafts={aircrafts} />
+        <RotationContainerComponent
+          setTotalScheduled={setTotalScheduled}
+          rotations={rotations}
+          removeFromRotation={removeFromRotation}
+        />
+        <FlightsContainerComponent addToRotation={addToRotation} setFlights={setFlights} flights={flights} />
 
       </DashboardContainer>
     </Container>
